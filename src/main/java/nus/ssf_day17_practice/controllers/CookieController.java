@@ -23,16 +23,14 @@ public class CookieController {
     @Autowired
     private FortuneCookie fortuneCookie;
 
-    @GetMapping(path="{cookieId}")
-    public ResponseEntity<String> getCookie (@RequestParam(defaultValue = "1") 
-                                        Integer count) {
-        
+    @GetMapping
+    public ResponseEntity<String> getCookie (
+        @RequestParam(defaultValue = "1") Integer count) {
 /*         JsonObjectBuilder cookieObject = Json.createObjectBuilder();
         JsonArrayBuilder cookieArray = Json.createArrayBuilder(); */
 
         if ((count < 1) || (count > 10)) 
-            return
-            ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Json.createObjectBuilder()
                     .add("error", "count must be between 1 to 10")
                     .build()
